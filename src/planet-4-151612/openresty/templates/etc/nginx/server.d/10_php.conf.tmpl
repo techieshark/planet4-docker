@@ -34,6 +34,9 @@ if ($request_method = POST) {
 if ($query_string != "") {
   set $skip_cache 1;
 }
+if ($request_uri ~= "/planet4/v1/get-spreadsheet-data|/planet4/v1/get-posts"|/planet4/v1/get-happypoint-data|/planet4/v1/get-gallery-images) {
+  set $skip_cache 0;
+}
 
 # Don't cache uris containing the following segments
 if ($request_uri ~* "/wp-admin/|/xmlrpc.php|wp-.*.php|/feed/|index.php|sitemap(_index)?.xml|health_*.php") {
